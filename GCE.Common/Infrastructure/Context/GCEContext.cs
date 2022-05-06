@@ -17,6 +17,12 @@ namespace GCE.Common.Infrastructure.Context
                 opts.ToTable("PessoaJuridica");
                 opts.Property(p => p.Id).ValueGeneratedNever();
             });
+
+            modelBuilder.Entity<PessoaFisica>(opts =>
+            {
+                opts.ToTable("PessoaFisica");
+                opts.Property(p => p.Id).ValueGeneratedNever();
+            });
         }
     }
 }
