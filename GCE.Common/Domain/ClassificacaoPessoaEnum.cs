@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GCE.Common.Domain
 {
-    enum ClassificacaoPessoaEnum : short
+    public enum ClassificacaoPessoaEnum : short
     {
         PessoaJuridica = 1,
         PEssoaFisica = 2

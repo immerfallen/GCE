@@ -8,6 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GCE.Common.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace GCE
 {
@@ -24,6 +28,8 @@ namespace GCE
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddDbContext<GCEContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GCEConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,11 +41,21 @@ namespace GCE
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                app.UseExceptionHandler("/Home/Error");                              
             }
-            app.UseHttpsRedirection();
+
+            var supportedCultures = new[]
+            {
+                new CultureInfo("pt-BR")
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("pt-BR"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+           
             app.UseStaticFiles();
 
             app.UseRouting();

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GCE.Common.Infrastructure.Context
 {
-    class GCEContext : DbContext
+    public class GCEContext : DbContext
     {
         public GCEContext(DbContextOptions<GCEContext> options) : base(options)
         {

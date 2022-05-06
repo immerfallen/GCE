@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GCE.Common.Domain
 {
-    class PessoaFisica
+    public class PessoaFisica
     {
 
         public int Id { get; set; }
